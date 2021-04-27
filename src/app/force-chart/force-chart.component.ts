@@ -12,12 +12,12 @@ export class ForceChartComponent implements OnInit {
 
   data: DataObject = {
     nodes: [
-      { id: "1", radiusSize: 32, name: "謝侑翰", group: 1 },
-      { id: "2", radiusSize: 32, name: "幽靈學姐", group: 2 },
-      { id: "3", radiusSize: 32, name: "梁玉玫", group: 3 },
-      { id: "4", radiusSize: 32, name: "家誠哥", group: 2 },
-      { id: "5", radiusSize: 32, name: "黃彥宇", group: 2 },
-      { id: "6", radiusSize: 32, name: "陳勇翰", group: 2 }
+      { id: "1", radiusSize: 46, name: "謝侑翰", group: 1 },
+      { id: "2", radiusSize: 46, name: "王韻綺", group: 2 },
+      { id: "3", radiusSize: 46, name: "梁玉玫", group: 3 },
+      { id: "4", radiusSize: 46, name: "家誠哥", group: 2 },
+      { id: "5", radiusSize: 46, name: "黃彥宇", group: 2 },
+      { id: "6", radiusSize: 46, name: "陳勇翰", group: 2 }
     ],
     links: [
       { source: "5", target: "1", label: "同事" },
@@ -94,24 +94,28 @@ export class ForceChartComponent implements OnInit {
 
     const node = svg.append("g")
       .attr("class", "nodes")
-      // .attr("stroke", "#fff")
-      // .attr("stroke-width", 1.5)
       .selectAll("g")
       .data(nodes)
-      .enter().append("g");
+      .enter().append("g").call(this.drag(simulation));
 
     const circles = node.append("circle")
       .attr("class", "myCircle")
       .attr("r", d => d.radiusSize)
       .attr("fill", this.color)
-      .call(this.drag(simulation));
+    // .attr("stroke", "#fff")
+    // .attr("stroke-width", 1.5)
+    // .call(this.drag(simulation));
 
     var labels = node.append("text")
       .text(function (d) {
         return d.name;
       })
-      .attr('x', d => d.radiusSize + 3)
-      .attr('y', 0);
+      .style("fill", "white")
+      .style("font-size", "22px")
+      .style("text-anchor", "middle")
+      .style("alignment-baseline", "middle")
+    // .attr('x', 0)
+    // .attr('y', 0);
 
 
     simulation.force<ForceLink<any, any>>("link").links(links);
