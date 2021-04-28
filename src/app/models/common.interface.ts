@@ -10,6 +10,7 @@ export interface Link {
   source: string
   target: string
   label: string
+  linknum?: number
 }
 
 export interface DataObject {
