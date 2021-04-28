@@ -1,6 +1,9 @@
 export interface Node {
   id: string
   name: string
+  spouse?: string
+  area?: string,
+  shape?: string,
   group?: number
   radiusSize?: number
   fillColor?: string
@@ -9,7 +12,7 @@ export interface Node {
 export interface Link {
   source: string
   target: string
-  label: string
+  relation: string
   linknum?: number
 }
 
